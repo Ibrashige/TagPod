@@ -28,7 +28,7 @@ Simply flash ```firmware.ino``` to the ESP32 using the Arduino IDE or your edito
 
 The following electronic parts are used Dispenser: ```ESP32 Devkit-C```,```Teensy USB Board, Version 3.2```,```Waveshare 4.2 in Black/White/Red E-Paper Display```, ```EMBSGB200C Tacuna Systems amplifier```,```ANYLOAD 23KG capacity load cells/w junction box```,```MFRC522 RFID Module```, ```TB67S249FTG Stepper Motor Driver Carrier - Full Breakout```, ```12V DC Motor```, ```LED Pushbutton```, buzzer, etc... Their wiring is described below.
 
-### E-Paper Display
+### E-Paper Display (To designated Teensy 3.2)
 ```
 BUSY -> 7
 RST  -> 9
@@ -39,7 +39,7 @@ DIN  -> 11
 GND  -> GND
 VCC  -> 3.3V
 ```
-### RFID Module
+### RFID Module (To designated Teensy 3.2)
 ```
 SDA  -> 18
 SCK  -> 13
@@ -51,7 +51,7 @@ GND  -> GND
 ```
 *MOSI/SCK and CLK/DIN lines are shared between the display and RFID module.*
 
-### Load Cell
+### Load Cell (To ESP32)
 ``` 
 VCC -> 3.3V
 VDD -> 3.3V
@@ -66,7 +66,7 @@ YLW  -> YLW (strain gauge)
 ```
 *VCC and VDD are grouped*.
 
-### Motor Driver
+### Motor Driver (To designated Teensy 3.2)
 ```
 ENA  -> 2
 IN1  -> 33
@@ -78,15 +78,15 @@ GND  -> ESP32 GND ansd power supply GND
 5V   -> 5V on ESP32
 ```
 
-### Button
+### Button (To designated Teensy 3.2)
 ```
 GND -> 10K ohm resistor -> pin 34 -> 5V
 ```
-### LED
+### LED (To designated Teensy 3.2)
 ``` 
 GND -> LED -> 220 ohm -> pin 0
 ```
-### Buzzer
+### Buzzer (To designated Teensy 3.2)
 ``` 
 GND  -> buzzer -> 100 ohm -> pin 2
 ```
