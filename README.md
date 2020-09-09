@@ -26,26 +26,26 @@ Simply flash ```firmware.ino``` to the ESP32 using the Arduino IDE or your edito
 
 ## Parts & Wiring
 
-The following electronic parts are used Dispenser: ```ESP32 Devkit-C```,```Teensy USB Board, Version 3.2``,```Waveshare 4.2 in Black/White/Red E-Paper Display```, ```EMBSGB200C Tacuna Systems amplifier```,```ANYLOAD 23KG capacity load cells/w junction box```,```MFRC522 RFID Module```, ```TB67S249FTG Stepper Motor Driver Carrier - Full Breakout```, ```12V DC Motor```, ```LED Pushbutton```, buzzer, etc... Their wiring is described below.
+The following electronic parts are used Dispenser: ```ESP32 Devkit-C```,```Teensy USB Board, Version 3.2```,```Waveshare 4.2 in Black/White/Red E-Paper Display```, ```EMBSGB200C Tacuna Systems amplifier```,```ANYLOAD 23KG capacity load cells/w junction box```,```MFRC522 RFID Module```, ```TB67S249FTG Stepper Motor Driver Carrier - Full Breakout```, ```12V DC Motor```, ```LED Pushbutton```, buzzer, etc... Their wiring is described below.
 
 ### E-Paper Display
 ```
-BUSY -> 4
-RST  -> 16
-DC   -> 17
-CS   -> 5
-CLK  -> 18
-DIN  -> 23
+BUSY -> 7
+RST  -> 9
+DC   -> 8
+CS   -> 10
+CLK  -> 13
+DIN  -> 11
 GND  -> GND
 VCC  -> 3.3V
 ```
 ### RFID Module
 ```
-SDA  -> 21
-SCK  -> 18
-MOSI -> 23
-MISO -> 19
-RST  -> 22
+SDA  -> 18
+SCK  -> 13
+MOSI -> 11
+MISO -> 12
+RST  -> 6
 3.3V -> 3.3V 
 GND  -> GND
 ```
