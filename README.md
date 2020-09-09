@@ -83,6 +83,18 @@ JST 2 (Cathode)[-]: GND
 ``` 
 GND  -> 100 ohm -> buzzer ->  pin 21
 ```
+## I2C Wiring
+```
+ESP32: 
+SCL -> pin 22
+SDA -> pin 21
+```
+```
+Teensy 3.2:
+SCL -> pin 19 (A5)
+SDA -> pin 18 (A4)
+```
+*SCL and SDA lines are shared between each MCU (i.e connect ESP32's pin 22 to Teensy 3.2's pin 19 and so on).*
 
 ## Known Bugs
 1. Using the buzzer with other parts (particularly the display) in the same sketch causes the program to freeze. (Investigate the pin used for the buzzer and what effects it may have on other pins)
