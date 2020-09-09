@@ -5,9 +5,11 @@ This repository contains all the logic associated with controlling the Dispenser
 ## Prerequisites
 
 The following libraries must be installed on your computer for the code to compile:
-1. HX711 for the load cell: <https://github.com/bogde/HX711>
+1. Arduino AVR boards library (For Teensy 3.2)
+2. ESP32 Arduino library: <https://github.com/espressif/arduino-esp32> 
 2. MFRC522 for the RFID module: <https://github.com/miguelbalboa/rfid>
 3. GxEPD2 for the e-paper display: <https://github.com/ZinggJM/GxEPD2>
+4. HX711 for the load cell: <https://github.com/bogde/HX711>
 
 *You must add the ESP32 board to your IDE. The instructions for doing so on the Arduino IDE can be found [here](https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/).*
 
@@ -24,7 +26,7 @@ Simply flash ```firmware.ino``` to the ESP32 using the Arduino IDE or your edito
 
 ## Parts & Wiring
 
-The following electronic parts are used Dispenser: ```ESP32 Devkit-C```, ```Waveshare 2.9 in Black/White E-Paper Display```, ```HX711 load cell```,```MFRC522 RFID Module```, ```L298N  H-Bridge Motor Driver```, ```12V DC Motor```, ```LED Pushbutton```, strain gauge, buzzer, etc... Their wiring is described below.
+The following electronic parts are used Dispenser: ```ESP32 Devkit-C```,```Teensy USB Board, Version 3.2``,```Waveshare 4.2 in Black/White/Red E-Paper Display```, ```EMBSGB200C Tacuna Systems amplifier```,```ANYLOAD 23KG capacity load cells/w junction box```,```MFRC522 RFID Module```, ```TB67S249FTG Stepper Motor Driver Carrier - Full Breakout```, ```12V DC Motor```, ```LED Pushbutton```, buzzer, etc... Their wiring is described below.
 
 ### E-Paper Display
 ```
