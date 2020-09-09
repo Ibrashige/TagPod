@@ -51,28 +51,19 @@ GND  -> GND
 ```
 *MOSI/SCK and CLK/DIN lines are shared between the display and RFID module.*
 
-### Load Cell (To ESP32)
+### EMBSGB200C Load Cell Amplifier (To ESP32)
 ``` 
-VCC -> 3.3V
-VDD -> 3.3V
-DAT -> 26
-CLK -> 25
+VIN+ -> 12V
+VOUT -> Voltage Divider (R1 = 1K Ohm R2 = 2K Ohm) -> 32
 GND -> GND
 
-RED  -> RED (strain gauge)
-BLK  -> BLK (strain gauge)
-WHT  -> WHT (strain gauge)
-YLW  -> YLW (strain gauge)
 ```
 *VCC and VDD are grouped*.
 
 ### Motor Driver (To designated Teensy 3.2)
 ```
-ENA  -> 2
-IN1  -> 33
-IN2  -> 32
-OUT1 -> + side of motor
-OUT2 -> - side of motor
+(DIR)CW/CCW -> 23
+(STEP)CLK -> 22
 VCC  -> 12V from power supply
 GND  -> ESP32 GND ansd power supply GND
 5V   -> 5V on ESP32
@@ -80,15 +71,17 @@ GND  -> ESP32 GND ansd power supply GND
 
 ### Button (To designated Teensy 3.2)
 ```
-GND -> 10K ohm resistor -> pin 34 -> 5V
+JST 1: 5V (From Pololu D24V50F5 5V regulator)
+JST 2: pin 5 -> 10K ohm resistor -> GND 
 ```
 ### LED (To designated Teensy 3.2)
 ``` 
-GND -> LED -> 220 ohm -> pin 0
+JST 1 (Anode)[+]: 220 ohm resistor -> pin 4
+JST 2 (Cathode)[-]: GND
 ```
 ### Buzzer (To designated Teensy 3.2)
 ``` 
-GND  -> buzzer -> 100 ohm -> pin 2
+GND  -> 100 ohm -> buzzer ->  pin 21
 ```
 
 ## Known Bugs
