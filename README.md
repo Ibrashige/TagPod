@@ -25,6 +25,9 @@ Simply flash ```firmware.ino``` to the ESP32 using the Arduino IDE or your edito
 4. The program switches back to the product screen after a certain maximum weight.
 
 ## FlowChart
+![Image of Flowchart](https://github.com/Ibrashige/TagPod/blob/master/Tag%20Project%20(2).png)
+
+## Connections
 ![Image of Flowchart](https://github.com/Ibrashige/TagPod/blob/master/Tag%20Project%20(1).png)
 
 ## Parts & Wiring
