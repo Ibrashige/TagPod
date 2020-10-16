@@ -32,7 +32,7 @@ Simply flash ```firmware.ino``` to the ESP32 using the Arduino IDE or your edito
 
 ## Parts & Wiring
 
-The following electronic parts are used Dispenser: ```ESP32 Devkit-C```,```Teensy USB Board, Version 3.2```,```Waveshare 4.2 in Black/White/Red E-Paper Display```, ```EMBSGB200C Tacuna Systems amplifier```,```ANYLOAD 23KG capacity load cells/w junction box```,```MFRC522 RFID Module```, ```TB67S249FTG Stepper Motor Driver Carrier - Full Breakout```, ```12V DC Motor```, ```LED Pushbutton```, buzzer, etc... Their wiring is described below.
+The following electronic parts are used Dispenser: ```ESP32 Devkit-C```,```Teensy USB Board, Version 3.2```,```Waveshare 4.2 in Black/White/Red E-Paper Display```, ```EMBSGB200C Tacuna Systems amplifier```,```ANYLOAD 23KG capacity load cells/w junction box```,```MFRC522 RFID Module```, ```VNH5019 Motor Driver Carrier```, ```150:1 Metal Gearmotor 37Dx57L mm 12V (Helical Pinion)```, ```LED Pushbutton```, buzzer, etc... Their wiring is described below.
 
 ### E-Paper Display (To designated Teensy 3.2)
 ```
@@ -47,7 +47,7 @@ VCC  -> 3.3V
 ```
 ### RFID Module (To designated Teensy 3.2)
 ```
-SDA  -> 18
+SDA  -> 15
 SCK  -> 13
 MOSI -> 11
 MISO -> 12
@@ -60,7 +60,7 @@ GND  -> GND
 ### EMBSGB200C Load Cell Amplifier (To ESP32)
 ``` 
 VIN+ -> 12V
-VOUT -> Voltage Divider (R1 = 1K Ohm R2 = 2K Ohm) -> 32
+VOUT -> Voltage Divider (R1 = 100K Ohm R2 = 200K Ohm) -> 36 (Sensor VP)
 GND -> GND
 
 ```
@@ -68,11 +68,12 @@ GND -> GND
 
 ### Motor Driver (To designated Teensy 3.2)
 ```
-(DIR)CW/CCW -> 23
-(STEP)CLK -> 22
+Motor PWM -> 23
+Motor Pin 1 -> 2
+Motor Pin 2 -> 3
 VCC  -> 12V from power supply
-GND  -> ESP32 GND ansd power supply GND
-5V   -> 5V on ESP32
+GND  -> Teensy 3.2 GND and power supply GND
+5V   -> 5V on Teensy 3.2
 ```
 
 ### Button (To designated Teensy 3.2)
