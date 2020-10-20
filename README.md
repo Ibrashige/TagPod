@@ -104,12 +104,13 @@ SDA -> pin 18 (A4)
 *SCL and SDA lines are shared between each MCU (i.e connect ESP32's pin 22 to Teensy 3.2's pin 19 and so on).*
 
 ## Known Bugs
-1. Using the buzzer with other parts (particularly the display) in the same sketch causes the program to freeze. (Investigate the pin used for the buzzer and what effects it may have on other pins)
+1. Display updates when the weight is not changed, set weight and other variables to zero on sale screen
 
+2. Everytime the display is updated while dispensing, the pushbutton switch lags the motor and a preformance latency is intoduced when dispensing. (Investigate the relevant pins/wiring).
 
-2. Everytime the display is updated, the led flickers. (Investigate the relevant pins/wiring).
+3. Scale is off by -0.5 kg. Find a way to reduce deviance between theoretical and actual value.
 
 ## To-Do 
 1. Add logic to connect  to wi-fi and integrate with Google Cloud IoT Core.
 2. Add logic to easily configure Wi-Fi credentials.
-3. Current scale logic is for testing purposes (weight is added rather than being subracted), modify it for real-world use.
+
