@@ -19,6 +19,7 @@ class Dispenser
     void ledOff();
     // Buzzer
     void buzz();
+    void endtone();
     // RFID Module
     bool isCardPresent();
     String getCardID();
@@ -30,13 +31,13 @@ class Dispenser
     // Display
     void clearScreen();
     void showProductScreen();
-    void showSaleScreen(float weight);
+    void showSaleScreen(double weight_in_grams);
     // Miscellaneous
     void updateProductInfo(
       float cost,
       String name,
       String text,
-      unsigned int density
+      float density
     );
     void addWeight();
     void resetWeight();
