@@ -8,19 +8,18 @@
 #include <Wire.h>
 
 // Const
-const int dispensingTimout = 5000; //in milliseconds
+const int dispensingTimout = 10000; //in milliseconds
+
+double weight; 
+double in_weight;
+double fin_weight;
+double weight_in_grams;
+double prevWeight = 0;
 const int numReadings = 10;
-
-float readings[numReadings];      // the readings from the analog input
+double readings[numReadings];      // the readings from the analog input
 int readIndex = 0;              // the index of the current reading
-int total = 0;                  // the running total
-int average = 0;                // the average
-
-float weight; 
-float in_weight;
-float fin_weight;
-float prevWeight = 0;
-
+double total = 0;                  // the running total
+double average = 0;                // the average
 Dispenser dp;
 
 void setup()
@@ -31,9 +30,6 @@ void setup()
   dp.clearScreen();
   dp.showProductScreen();
   Serial.begin(115200);
-  for (int thisReading = 0; thisReading < numReadings; thisReading++) {
-    readings[thisReading] = 0;
-  }
 }
 
 void loop()
@@ -48,48 +44,48 @@ void loop()
         dp.showSaleScreen(0);
         Wire.begin(9);                // join i2c bus with address #8
         Wire.onReceive(initialweight);
-        delay(2000);
-        dp.ledOn();
+        delay(1500);
         Wire.onReceive(finalweight);
+        dp.ledOn();
+        
        
         // Keep filling container until timout is reached
          unsigned long startTime = millis();
-         while (millis() - startTime < dispensingTimout) {   
-         dp.showSaleScreen(fin_weight);
+         while (millis() - startTime < dispensingTimout) {
+          
+            if (average > 15)
+            {
+              if(average > prevWeight )
+              {
+                 dp.showSaleScreen(average);
+                 prevWeight = average;
+              }
+            }
           // Toggle motor depending on whether
           // button is pressed
           if (dp.isButtonPressed()) {
             startTime = millis();
-          //  Serial.println("Dispensing.");
+            //Serial.println("Dispensing.");
             dp.motorOn(255);
            } else {
             dp.motorOff();
           }
-       
-          delay(500);
+        
        }
-
-        // Debug echo
-//        Serial.println("Exiting dispensing mode.");
-//        Serial.print("CardID: ");
-//        Serial.println(cardID);
-//        Serial.print("machineID: ");
-//        Serial.println(machineID);
-//        Serial.print("weightGrams: ");
-//        Serial.println(weightGrams);
 
         // After timout, "stop dispensing",
         // and return to product screen
         dp.motorOff();
         dp.ledOff();
-        dp.showSaleScreen(fin_weight);
-        delay(2000);
+        dp.buzz();
+   if (weight_in_grams > 15)
+      {
+        dp.showSaleScreen(weight_in_grams);
+      }
+        delay(5000);
         dp.clearScreen();
         dp.showProductScreen();
     }
-      delay(2500);
-//      weight = 0;
-//      prevWeight = 0;
 }
 void initialweight(int howmany) {
   
@@ -98,16 +94,11 @@ void initialweight(int howmany) {
   {
     char w = Wire.read(); // receive byte as a character
     weightstring = weightstring + w;
-    Serial.print(weightstring);         // print the character
+//    Serial.print(weightstring);         // print the character
   }
    in_weight = weightstring.toFloat(); // respond with message of 6 bytes // as expected by master
-   //Serial.println(weight);
-   //if (weight < prevWeight) {
-      prevWeight = weight; 
-   // }
-//    Serial.println(weight);
-    //Serial.println("Initial weight is:");
-    Serial.println(in_weight);
+   prevWeight = weight; 
+   Serial.println(in_weight);
 }
 
 void finalweight(int howmany) {
@@ -121,10 +112,26 @@ void finalweight(int howmany) {
   }
    weight = weightstring.toFloat(); // respond with message of 6 bytes // as expected by master
    fin_weight = in_weight - weight;
-   //Serial.println(weight);
-//    Serial.println(weight);
- // else{
-        Serial.println("Final weight is:");
-        Serial.println(fin_weight);
-   //}
+   weight_in_grams = fin_weight * 1000;
+   // subtract the last reading:
+           total = total - readings[readIndex];
+          // read from the sensor:
+          readings[readIndex] = weight_in_grams;
+          // add the reading to the total:
+          total = total + readings[readIndex];
+          // advance to the next position in the array:
+          readIndex = readIndex + 1;
+
+          // if we're at the end of the array...
+          if (readIndex >= numReadings) {
+          // ...wrap around to the beginning:
+           readIndex = 0;
+          }
+           
+          // calculate the average:
+         average = total / numReadings;
+//          Serial.println("Final weight is:");
+//          Serial.println(average);
+          Serial.println("Previous weight is:");
+          Serial.println(prevWeight);
 }
