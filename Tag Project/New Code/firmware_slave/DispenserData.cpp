@@ -8,12 +8,18 @@
 DispenserData::DispenserData()
 {
   // Constructor. Initialises default values.
-  _productCost = 0.01;
-  _productName = "Fictional Product"; // Max 17 characters
+  _productCost = 4.50; // Organic Almonds
+//  _productCost = 0.45; // Fusilli Pasta
+//  _productCost = 0.25; // Sugar
+  _productName = "Organic Almonds"; // Max 17 characters 
+//  _productName = "Fusilli Pasta"; // Max 17 characters 
+//  _productName = "Brown Sugar"; // Max 17 characters 
   _helperText = "Tap card to activate";
-  _cupSize = 0.23659;
-  _productWeight = 0;
-  _productDensity = 410;
+  _cupSize = 0.23659; // L in cup
+  _productWeight = 0; 
+  _productDensity = 583.29; //Almonds density in kg/m3
+//  _productDensity = 358.63; //Fusilli Pasta density in kg/m3
+//  _productDensity = 929.89; //Sugar density in kg/m3
 }
 
 float DispenserData::getProductCost()
@@ -36,20 +42,20 @@ float DispenserData::getProductWeight()
   return _productWeight;
 }
 
-float DispenserData::weightToPrice(float weight)
+double DispenserData::weightToPrice(double weight_in_grams)
 {
   // rounds price to the nearest cent
-  return roundf(weight * _productCost * 100) / 100;
+  return roundf(weight_in_grams * _productCost) / 100;
 }
 
-float DispenserData::weightToCups(float weight)
+double DispenserData::weightToCups(double weight_in_grams)
 {
   // cups = weight / (cup size * density)
   // Rounded to nearest hundredth
-  return roundf((weight / (_cupSize * _productDensity)) * 100) / 100;
+  return roundf((weight_in_grams) / (_cupSize * _productDensity));
 }
 
-void DispenserData::setProductCost(float cost)
+float DispenserData::setProductCost(float cost)
 {
   _productCost = cost;
 }
@@ -64,7 +70,7 @@ void DispenserData::setHelperText(String text)
   _helperText = text;
 }
 
-void DispenserData::setProductDensity(unsigned int density)
+float DispenserData::setProductDensity(float density)
 {
   _productDensity = density;
 }
