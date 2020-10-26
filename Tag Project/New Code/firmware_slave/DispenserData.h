@@ -15,20 +15,20 @@ class DispenserData
     String getProductName();
     String getHelperText();
     float getProductWeight();
-    float weightToPrice(float weight);
-    float weightToCups(float weight);
-    void setProductCost(float cost);
+    double weightToPrice(double weight_in_grams);
+    double weightToCups(double weight_in_grams);
+    float setProductCost(float cost);
     void setProductName(String name);
     void setHelperText(String text);
-    void setProductDensity(unsigned int density);
-    void updateProductAmt(float weight);
+    float setProductDensity(float density);
+    void updateProductAmt(float weight_in_grams);
   private:
     float _productCost;  // $ / 100g
     String _productName;
     String _helperText;
     float _cupSize; // Volume of US customary cup (recipes) in L
-    unsigned int _productWeight;
-    unsigned int _productDensity; // kg / m^3
+    float _productWeight;
+    float _productDensity; // kg / m^3
 };
 
 #endif
