@@ -21,7 +21,7 @@
 const int buttonPin = 5;
 const int ledPin = 4;
 const int buzzerPin = 21;
-const int buzzerFrequency = 60000;
+const int buzzerFrequency = 10000;
 const int buzzerChannel = 21;
 const int rfidSS = 15;
 const int spiRST = 6;
@@ -111,8 +111,18 @@ void Dispenser::ledOff()
 void Dispenser::buzz()
 {
   tone(buzzerChannel, buzzerFrequency, 300);
+//    tone(buzzerChannel, 2500, 300);
   //delay(300);  // Default buzz time
   
+}
+
+void Dispenser::endtone()
+{
+  tone(buzzerChannel, 5000, 100);
+  delay(200);
+  tone(buzzerChannel, 5000, 100);
+  delay(200);
+  tone(buzzerChannel, 15000, 100);
 }
 
 bool Dispenser::isCardPresent()
@@ -166,17 +176,6 @@ void Dispenser::motorOff()
   analogWrite(motorPwmPin, 0); 
 }
 
-unsigned int Dispenser::getWeight()
-{
-  // Prevents load cell from returning
-  // slightly negative weights
-  if (scale.get_units() <= 0) {
-    return 0;
-  }
-  // Return weight rounded to the nearest gram
-  return round(scale.get_units());
-}
-
 void Dispenser::clearScreen()
 {
   UI.clearScreen();
@@ -191,29 +190,19 @@ void Dispenser::showProductScreen()
   );
 }
 
-void Dispenser::showSaleScreen(float weight)
+void Dispenser::showSaleScreen(double weight_in_grams)
 {
   UI.displaySaleInfo(
-    data.weightToPrice(weight),
-    weight,
-    data.weightToCups(weight)
+    data.weightToPrice(weight_in_grams),
+    weight_in_grams,
+    data.weightToCups(weight_in_grams)
   );
 }
 
-void Dispenser::updateProductInfo(float cost, String name, String text, unsigned int density)
+void Dispenser::updateProductInfo(float cost, String name, String text,  float density)
 {
   data.setProductCost(cost);
   data.setProductName(name);
   data.setHelperText(text);
   data.setProductDensity(density);
-}
-
-// To add weight from fake TestHX711
-void Dispenser::addWeight(){
-  scale.increment();
-}
-
-// To add weight from fake TestHX711
-void Dispenser::resetWeight(){
-  scale.tare();
 }
