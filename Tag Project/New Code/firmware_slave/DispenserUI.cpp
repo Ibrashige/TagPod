@@ -23,12 +23,13 @@
 GxEPD2_BW<GxEPD2_420, MAX_HEIGHT_BW(GxEPD2_420)> display(GxEPD2_420(/*CS=10*/ SS, /*DC=*/ 8, /*RST=*/ 9, /*BUSY=*/ 7));
 
 // Include necessary Fonts 
-#include <Fonts/FreeSans9pt7b.h>
+#include <Fonts/FreeSans12pt7b.h>
 #include <Fonts/FreeSansBold18pt7b.h>
 #include <Fonts/FreeSansBold24pt7b.h>
 #include <Fonts/FreeSansOblique12pt7b.h>
 #include <Fonts/FreeSansOblique18pt7b.h>
 #include <Fonts/FreeSansBoldOblique24pt7b.h>
+
 
 DispenserUI::DispenserUI()
 {
@@ -39,7 +40,7 @@ void DispenserUI::begin()
 {
   // Initialises default settings.
   display.init(115200);
-  display.setRotation(0);
+  display.setRotation(2);
   display.setTextColor(GxEPD_BLACK);
   display.setPartialWindow(0,0, display.width(), display.height());
 }
@@ -62,10 +63,12 @@ void DispenserUI::displayProductInfo(String name, float cost, String text)
   // Placement of product name box (Top)
   int16_t tbx, tby;
   uint16_t tbw, tbh;
-  display.setFont(&FreeSansBold18pt7b);
+  display.setFont(&FreeSansBold24pt7b);
   display.getTextBounds(name, 0, 0, &tbx, &tby, &tbw, &tbh);
-  uint16_t x = (display.width() - tbw) / 2;
-  uint16_t y = (display.height() + tbh) / 4;
+  uint16_t x = (display.width() - tbw) + 40 ; // Organic Almonds
+//  uint16_t x = ((display.width() - tbw)/2) + 30 ; // Fusilli Pasta
+//  uint16_t x = (((display.width() - tbw) * 3) / 4 ); // Sugar
+  uint16_t y = ((display.height() + tbh) / 6) + 25; 
 
   // Placement of product cost/weight boxes (Middle)
   String costString = "$" + String(cost);
@@ -74,19 +77,22 @@ void DispenserUI::displayProductInfo(String name, float cost, String text)
   display.setFont(&FreeSansBold24pt7b);
   display.getTextBounds(costString, 0, 0, &tbx2, &tby2, &tbw2, &tbh2);
   uint16_t x2 = (display.width() - tbw2) / 4;
-  uint16_t y2 = ((display.height() + tbh2) / 3) + 30;
+  uint16_t y2 = ((display.height() + tbh2) / 3) + 60;
 
+  int16_t tbx3, tby3;
+  uint16_t tbw3, tbh3;
   String weightString = " / 100 g";
-  uint16_t x3 = x2 + tbw2 + 5;
+  display.getTextBounds(weightString, 0, 0, &tbx3, &tby3, &tbw3, &tbh3);
+  uint16_t x3 = x2 + tbw2 ;
   uint16_t y3 = y2;
 
   // Placement of helper text box (Bottom)
   int16_t tbx4, tby4;
   uint16_t tbw4, tbh4;
-  display.setFont(&FreeSans9pt7b);
+  display.setFont(&FreeSans12pt7b);
   display.getTextBounds(text, 0, 0, &tbx4, &tby4, &tbw4, &tbh4);
   uint16_t x4 = (display.width() - tbw4) / 2;
-  uint16_t y4 = ((display.height() + tbh4) / 4) + 80;
+  uint16_t y4 = ((display.height() + tbh4) / 4)+ 160;
   
   // Display the boxes on the screen
   display.firstPage();
@@ -105,13 +111,13 @@ void DispenserUI::displayProductInfo(String name, float cost, String text)
     display.print(costString);
  
     display.setCursor(x3, y3);
-    display.setFont(&FreeSansOblique12pt7b);
+    display.setFont(&FreeSansOblique18pt7b);
     Serial.print("displayProductInfo L3: ");
     Serial.println(weightString);
     display.print(weightString);
     
     display.setCursor(x4, y4);
-    display.setFont(&FreeSans9pt7b);
+    display.setFont(&FreeSans12pt7b);
     Serial.print("displayProductInfo L4: ");
     Serial.println(text);
     display.print(text);
