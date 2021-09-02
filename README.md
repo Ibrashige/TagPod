@@ -104,11 +104,11 @@ SDA -> pin 18 (A4)
 *SCL and SDA lines are shared between each MCU (i.e connect ESP32's pin 22 to Teensy 3.2's pin 19 and so on).*
 
 ## Known Bugs
-1. Display updates when the weight is not changed, set weight and other variables to zero on sale screen
+1. Display updates when the weight is not changed due to the initial zero setting mechanism (IZSM) being configured over entire capacity, set weight and other variables to zero on sale screen
 
 2. Everytime the display is updated while dispensing, the pushbutton switch lags the motor and a preformance latency is intoduced when dispensing. (Investigate the relevant pins/wiring).
 
-3. Scale is off by -0.5 kg. Find a way to reduce deviance between theoretical and actual value.
+3. Scale is off by -0.5 kg due to inadequate weight/load monitoring. Find a way to reduce deviance between theoretical and actual value.
 
 ## To-Do 
 1. Add logic to connect  to wi-fi and integrate with Google Cloud IoT Core.
