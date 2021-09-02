@@ -13,6 +13,11 @@ The following libraries must be installed on your computer for the code to compi
 
 *You must add the ESP32 board to your IDE. The instructions for doing so on the Arduino IDE can be found [here](https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/).*
 
+## Other Useful Resources
+1. Load cell & Amplifier FAQs: <https://tacunasystems.com/knowledge-base/load-cell-faq/>
+2. Specifications Relating to Non-automatic Weighing Devices (1998): <https://laws-lois.justice.gc.ca/eng/regulations/SI-98-81/page-1.html#h-653180>
+3. DATAQ Instruments ADC resolution Calculation: <https://www.dataq.com/data-acquisition/general-education-tutorials/how-much-adc-resolution-do-you-really-need.html>
+
 ## Installation
 
 Simply flash ```firmware.ino``` to the ESP32 using the Arduino IDE or your editor of preference. You may need to hold the boot button down during the upload process.
