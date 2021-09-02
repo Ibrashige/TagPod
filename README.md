@@ -21,7 +21,7 @@ Simply flash ```firmware.ino``` to the ESP32 using the Arduino IDE or your edito
 
 1. Approximate a compatible RFID fob/card to the reader.
 2. The product info screen should switch to the sale screen.
-3. Add weights to the scale and watch the price update.
+3. Push the dispenser button and add dispensed weight to the scale while monitoring the price update.
 4. The program switches back to the product screen after a certain maximum weight.
 
 ## FlowChart
