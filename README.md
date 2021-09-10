@@ -5,11 +5,11 @@ This repository contains all the logic associated with controlling the Dispenser
 ## Prerequisites
 
 The following libraries must be installed on your computer for the code to compile:
-1. Arduino AVR boards library (For Teensy 3.2)
+1. Teensy board's library (For Teensy 3.2): https://www.pjrc.com/teensy/td_download.html 
 2. ESP32 Arduino library: <https://github.com/espressif/arduino-esp32> 
 2. MFRC522 for the RFID module: <https://github.com/miguelbalboa/rfid>
 3. GxEPD2 for the e-paper display: <https://github.com/ZinggJM/GxEPD2>
-4. HX711 for the load cell: <https://github.com/bogde/HX711>
+4. NAU7802 for the load cell: <https://github.com/sparkfun/SparkFun_Qwiic_Scale_NAU7802_Arduino_Library>
 
 *You must add the ESP32 board to your IDE. The instructions for doing so on the Arduino IDE can be found [here](https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/).*
 
