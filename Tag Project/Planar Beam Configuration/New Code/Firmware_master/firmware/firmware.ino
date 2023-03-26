@@ -11,7 +11,7 @@
 const int dispensingTimout = 5000; //in milliseconds
 int prevWeight = 0;
 
-// Wifi constants
+// Wifi constantsskb
 const char* wifiSsid = "Crunchy";
 const char* wifiPassword = "muffin4me";
 const int httpConnectionTimeout = 500;
